@@ -59,18 +59,12 @@ export default {
     <g :transform="'translate(0 ' + (ui.bottom - 50) + ')'">
       <rect
         :x="ui.left"
-        y="-100"
+        y="-50"
         :width="ui.right - ui.left"
-        height="150"
+        height="100"
         fill="#000000"
         fill-opacity="0.2"
         />
-      <text
-        font-size="40px"
-        fill-opacity="1"
-        :transform="'translate(0 -55)'">
-        The Story of Orbiter 8
-      </text>
       <g  fill-opacity="0.25" font-size="30px">
         <btn
           :width="40" :height="40"

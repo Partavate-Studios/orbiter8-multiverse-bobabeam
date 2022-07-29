@@ -9,7 +9,7 @@ export default {
       mouseHold: false,
       ui: useUI(),
       debug: false,
-      rect: true
+      rect: false
     }
   },
   mounted () {

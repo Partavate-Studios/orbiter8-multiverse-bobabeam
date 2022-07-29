@@ -15,7 +15,7 @@ export default {
 
 <template>
 <g>
-  <g :transform="'scale(' + (size) + ')'">
+  <g :transform="'scale(' + (size / 10 + 0.25) + ')'">
     <circle cx="0" cy="0" r="10" stroke-width="0" fill="#e5cfff00" />
     <circle cx="0" cy="0" r="4" stroke="#c3b3da" stroke-width="0.5" fill="#e5cfff" />
     <g  stroke="#c3b3da" stroke-width="0.15" fill="#c3b3da">

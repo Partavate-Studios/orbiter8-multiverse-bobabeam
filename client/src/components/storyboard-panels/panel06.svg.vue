@@ -38,6 +38,15 @@ export default {
   </text>
 
 
+    <g transform="translate(0 -50)">
+      <text transform="translate(0 -10)">
+       Every network is a universe
+      </text>
+      <text transform="translate(0 10)">
+       Together they are the multiverse
+      </text>
+    </g>
+
   <g transform="translate(0 100)">
     <btn
       :width="300" :height="30"
