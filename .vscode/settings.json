@@ -1,0 +1,8 @@
+{
+    "html.autoCreateQuotes": false,
+    "editor.autoClosingQuotes": "never",
+    "html.autoClosingTags": false,
+    "javascript.autoClosingTags": false,
+    "javascript.suggest.enabled": true,
+    "typescript.suggest.enabled": true
+}
