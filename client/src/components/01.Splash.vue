@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import svgContainer from './layouts/svgContainer.vue'
+import backdrop from './assets/backdrop.svg.vue'
+import gridlines from './assets/gridlines.svg.vue'
 import btn from './ui-primitives/button-basic.svg.vue'
 import logo from './assets/logo.svg.vue'
+import ship from './assets/ship08.svg.vue'
+import portal from './assets/portal.svg.vue'
+import star from './assets/star.svg.vue'
 
 import { useUI } from '../stores/ui'
 import { useRouting } from '../stores/routing'
@@ -22,17 +27,87 @@ export default {
 
 <template>
   <svgContainer>
+  <g>
+    <backdrop  transform="scale(0.5)" />
+  </g>
 
-    <logo v-if="ui.portrait" transform="translate(0 -420) scale(0.7)" />
-    <logo v-if="ui.landscape" transform="translate(0 -240) scale(0.4)" />
+    <logo  :transform="'translate(0 ' + (ui.top + 80) + ') scale(0.4)'" />
 
-    <g transform="translate(0 -50)">
-      <text transform="translate(0 -10)">
-       Every network is a universe
+      <text
+        font-size="28px"
+        fill-opacity="0.75"
+        fill="#ffffff"
+        :transform="'translate(0 ' + (ui.top + 180) + ')'">
+        Multiverse Portals
       </text>
-      <text transform="translate(0 10)">
-       Together they are the multiverse
+      <text
+        font-size="14px"
+        fill-opacity="0.5"
+        fill="#ffffff"
+        :transform="'translate(0 ' + (ui.top + 210) + ')'">
+        D E M O
       </text>
+
+    <g>
+      <g transform="translate(-300 -100) scale(0.25)">
+        <star />
+      </g>
+      <g transform="translate(200 -150) scale(0.2)">
+        <star />
+      </g>
+      <g transform="translate(100 150) scale(0.1)">
+        <star />
+      </g>
+
+      <animateTransform
+        attributeName="transform"
+        attributeType="XML"
+        type="rotate"
+        from="0"
+        to="360"
+        dur="600s"
+        repeatCount="indefinite"
+      />
+    </g>
+
+    <g transform="translate(0 40) scale(2)">
+      <g>
+        <g>
+          <portal transform="scale(1.5)" />
+
+          <animateTransform
+            attributeName="transform"
+            attributeType="XML"
+            type="scale"
+            values="0.8; 1.2; 0.8"
+            dur="60s"
+            repeatCount="indefinite"
+          />
+        </g>
+        <g transform="translate(-40 40) rotate(45) scale(2)" opacity="1">
+          <g>
+            <ship :showEngines="true" />
+
+            <animateTransform
+              attributeName="transform"
+              attributeType="XML"
+              type="scale"
+              values="0.90; 1; 0.90"
+              dur="4s"
+              repeatCount="indefinite"
+            />
+          </g>
+        </g>
+
+        <animateTransform
+          attributeName="transform"
+          attributeType="XML"
+          type="rotate"
+          values="360; 0"
+          dur="240s"
+          repeatCount="indefinite"
+        />
+      </g>
     </g>
 
 
@@ -45,18 +120,12 @@ export default {
         fill="#000000"
         fill-opacity="0.2"
         />
-      <text
-        font-size="40px"
-        fill-opacity="1"
-        :transform="'translate(0 -55)'">
-        Orbiter 8 Multiverse Demo
-      </text>
       <g  font-size="30px">
         <btn
-          :width="200" :height="40"
-          text="Let's Begin"
+          :width="300" :height="60"
+          text="Begin"
            @click="routing.switchScreen('about')"
-          transform="translate(0 0)" />
+          transform="translate(0 -20)" />
       </g>
 
 

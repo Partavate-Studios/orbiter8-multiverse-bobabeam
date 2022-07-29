@@ -24,7 +24,7 @@ export default {
 
 <template>
 <g>
-  <g :transform="'scale(' + size + ')'">
+  <g :transform="'scale(' + (size / 16 + 0.25) + ')'">
     <defs>
       <radialGradient  id="planetGradient" cx="10%" cy="50%" r="180%" fx="0%" fy="50%">
         <stop offset="0%" style="stop-color:#e5cfff;stop-opacity:1" />

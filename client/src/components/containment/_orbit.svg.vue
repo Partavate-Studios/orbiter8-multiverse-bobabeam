@@ -23,12 +23,6 @@ export default {
 
 <template>
 <g>
-  <circle
-    cx="0" cy="0" :r="distance"
-    fill="none" stroke="#ffffff"
-    stroke-opacity="0.25" stroke-width="0.25"
-    stroke-dasharray="2 6"
-  />
   <g>
     <g :transform="'translate(' + distance + ' 0)'">
       <slot />
