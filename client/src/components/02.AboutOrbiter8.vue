@@ -46,13 +46,6 @@ export default {
 
 <template>
   <svgContainer>
-    <text
-      font-size="40px"
-      font-weight="bold"
-      fill-opacity="0.3"
-      :transform="'translate(0 ' + (ui.bottom - 110) + ')'">
-      The Story of Orbiter 8
-    </text>
 
     <panel01 v-if="panel == 0" v-on:next="next" />
     <panel02 v-if="panel == 1" v-on:pre="prev()" v-on:next="next" />
@@ -72,21 +65,28 @@ export default {
         fill="#000000"
         fill-opacity="0.2"
         />
+      <text
+        font-size="40px"
+        fill-opacity="1"
+        :transform="'translate(0 -55)'">
+        The Story of Orbiter 8
+      </text>
       <g  fill-opacity="0.25" font-size="30px">
-      <btn
-        :width="40" :height="40"
-        @click="prev" text="&lt;"
-        v-if="panel != 0"
-        :transform="'translate(' + ((panelCount + 3) * -25) + ' 0)'" />
-      <btn
-        :width="40" :height="40"
-        @click="next" text="&gt;"
-        v-if="panel != (panelCount-1)"
-        :transform="'translate(' + ((panelCount + 3) * 25) + ' 0)'" />
+        <btn
+          :width="40" :height="40"
+          @click="prev" text="&lt;"
+          v-if="panel != 0"
+          :transform="'translate(' + ((panelCount + 3) * -25) + ' 0)'" />
+        <btn
+          :width="40" :height="40"
+          @click="next" text="&gt;"
+          v-if="panel != (panelCount-1)"
+          :transform="'translate(' + ((panelCount + 3) * 25) + ' 0)'" />
       </g>
 
       <btn
         v-for="n in panelCount"
+        v-bind:key="n"
         font-size="8px"
         fill-opacity="0.5"
         :width="20"

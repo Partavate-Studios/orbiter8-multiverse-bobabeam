@@ -114,6 +114,7 @@ export const useWallet = defineStore('wallet', {
         });
       } catch (e) {
         console.log('Error requesting network.', e.message)
+        /*
         if (confirm('Polygon Mainnet was not found. Would you like us to try to add it?')) {
           let data = [{
             chainId: chainId,
@@ -136,6 +137,7 @@ export const useWallet = defineStore('wallet', {
             store.alert = 'We were unable to add the network.'
           }
         }
+        */
       }
       setTimeout(function(){ this.switchingNetwork = false }.bind(this), 500)
     },

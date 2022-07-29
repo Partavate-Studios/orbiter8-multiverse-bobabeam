@@ -55,6 +55,9 @@ export default {
     v-on:mouseup="mouseHold = false"
     text-anchor="middle"
     dominant-baseline="middle"
+    rendering="auto"
+    text-rendering="auto"
+    shape-rendering="auto"
     fill="#ffffff">
     <slot />
 
@@ -66,7 +69,8 @@ export default {
       :height="ui.protectedBoxHeight"
       fill="none"
       stroke="#ff0000"
-      stroke-width="4"
+      stroke-width="0.5"
+      stroke-dasharray="2 1"
       stroke-opacity="0.5" />
     <g v-if="debug">
       <rect
@@ -93,11 +97,6 @@ export default {
   svg {
     min-width: 100%;
     min-height: 100%;
-    shape-rendering: optimizeSpeed;
-    //shape-rendering: crispEdges;
-    //shape-rendering: geometricPrecision;
-    text-rendering: geometricPrecision;
-
   }
 
   div#svgWrapper {
