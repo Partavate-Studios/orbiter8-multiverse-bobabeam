@@ -20,11 +20,6 @@ export default {
 
 <template>
 <g>
-  <text
-    font-size="50px"
-    :transform="'translate(0 ' + (ui.top + 100) + ')'
-    ">Doors to the Multiverse
-  </text>
 
 
   <text transform="translate(0 30)">

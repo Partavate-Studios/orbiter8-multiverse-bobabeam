@@ -20,11 +20,6 @@ export default {
 
 <template>
 <g>
-  <text
-    font-size="50px"
-    :transform="'translate(0 ' + (ui.top + 100) + ')'
-    ">But they found something ancient.
-  </text>
 
   <text transform="translate(0 30)">
  - - Show: Portal

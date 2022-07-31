@@ -20,9 +20,10 @@ export default {
 
 <template>
 <g>
+
   <text
-    font-size="50px"
-    :transform="'translate(0 ' + (ui.top + 100) + ')'
+    font-size="20px"
+    :transform="'translate(0 ' + (ui.top + 300) + ')'
     ">Orbiter 8: First Intersteller Ship Goes Into Commercial Production
   </text>
   <text transform="translate(0 30)">

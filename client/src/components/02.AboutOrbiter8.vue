@@ -7,6 +7,8 @@ import panel03 from './storyboard-panels/panel03.svg.vue'
 import panel04 from './storyboard-panels/panel04.svg.vue'
 import panel05 from './storyboard-panels/panel05.svg.vue'
 import panel06 from './storyboard-panels/panel06.svg.vue'
+import minerva from './assets/minerva.svg.vue'
+import backdrop from './assets/backdrop.svg.vue'
 
 
 import { useUI } from '../stores/ui'
@@ -20,7 +22,39 @@ export default {
       ui: useUI(),
       panel: 0,
       panelCount: 6,
-      routing: useRouting()
+      routing: useRouting(),
+      words: [
+        [
+          'It is the year 2140.',
+          'Humans are in space.',
+          '',
+        ],
+        [
+          'Civilization now spreads',
+          'across single every planet',
+          'of our solar system.',
+        ],
+        [
+          'For the first time in history,',
+          'we are looking beyond the sun.',
+          'Everything has changed.',
+        ],
+        [
+          'Now They\'re Settling Across The Galaxy',
+          '',
+          '',
+        ],
+        [
+          'But they found something ancient.',
+          '',
+          '',
+        ],
+        [
+          'Doors to the Multiverse',
+          '',
+          '',
+        ],
+      ]
     }
   },
   methods: {
@@ -47,13 +81,38 @@ export default {
 <template>
   <svgContainer>
 
+    <backdrop transform="scale(0.5)" />
+
     <panel01 v-if="panel == 0" v-on:next="next" />
     <panel02 v-if="panel == 1" v-on:pre="prev()" v-on:next="next" />
     <panel03 v-if="panel == 2" v-on:pre="prev()" v-on:next="next" />
     <panel04 v-if="panel == 3" v-on:pre="prev()" v-on:next="next" />
     <panel05 v-if="panel == 4" v-on:pre="prev()" v-on:next="next" />
-    <panel06 v-if="panel == 5" v-on:pre="prev()" v-on:finish="finish"/>
+    <panel06 v-if="panel == 5" v-on:pre="prev()" v-on:finish="finish" />
 
+
+    <g :transform="'translate(0 ' + (ui.top + 50) + ')'">
+      <minerva transform="translate(-250 0) scale(0.5)" />
+    </g>
+
+    <text
+      font-size="40px"
+      text-anchor="start"
+      :transform="'translate(-180 ' + (ui.top + 50) + ')'
+      ">{{ words[panel][0] }}
+    </text>
+    <text
+      font-size="30px"
+      text-anchor="start"
+      :transform="'translate(-150 ' + (ui.top + 100) + ')'
+      ">{{ words[panel][1] }}
+    </text>
+    <text
+      font-size="30px"
+      text-anchor="start"
+      :transform="'translate(-150 ' + (ui.top + 150) + ')'
+      ">{{ words[panel][2] }}
+    </text>
 
 
     <g :transform="'translate(0 ' + (ui.bottom - 50) + ')'">

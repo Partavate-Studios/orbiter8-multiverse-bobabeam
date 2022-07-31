@@ -20,11 +20,6 @@ export default {
 
 <template>
 <g>
-  <text
-    font-size="50px"
-    :transform="'translate(0 ' + (ui.top + 100) + ')'
-    ">Now They're Settling Across The Galaxy
-  </text>
 
   <text transform="translate(0 30)">
  - - Show: Orbiter 8 Jumping To Star
