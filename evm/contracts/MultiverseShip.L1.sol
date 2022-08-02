@@ -9,10 +9,10 @@ import "hardhat/console.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "./vendor/boba/IL2StandardERC721.sol";
+import "./vendor/boba/IL1StandardERC721.sol";
 
-// Bobabase L2 Contract for O8 MultiverseShip
-contract MultiverseShip is IL2StandardERC721, ERC721, Ownable {
+// Moonbase Alpha L1 Contract for O8 MultiverseShip
+contract MultiverseShip is IL1StandardERC721, ERC721, Ownable {
     enum ShipStatus{Unregistered, Active, BridgeLocked}
     enum TeleportDirection{Out, In}
 
@@ -20,7 +20,7 @@ contract MultiverseShip is IL2StandardERC721, ERC721, Ownable {
     mapping(uint256 => address) private networkBridges; // chainId => BridgeAddress
     mapping(address => bool) private authorizedBridges; // Used for security modifier
     // For Boba's IL2StandardERC721 compatibility (ideally this would be a mapping value at [chainId])
-    address public override l1Contract;
+    address public override l2Contract;
 
     // per-Token Storage
     struct Ship {
@@ -28,8 +28,7 @@ contract MultiverseShip is IL2StandardERC721, ERC721, Ownable {
         ShipStatus state;
     }
     mapping(uint256 => Ship) private ships;
-
-    // Custom Events (Iface defines Mint, Burn)
+    
     event BridgeTeleport(uint256 indexed shipId, uint256 indexed chainId, TeleportDirection direction);
 
     modifier onlyOwnerOrBridge {
@@ -38,15 +37,15 @@ contract MultiverseShip is IL2StandardERC721, ERC721, Ownable {
     }
 
     constructor() ERC721(
-        "Multiverse Starships - Orbiter 8 BobaBeam Testflight 0.1",
+        "Multiverse Starships - Orbiter 8 Moonbase Testflight 0.1",
         "O8MVSS"
     ) {}
 
     // For Boba L2 Bridge Compatibility
     function supportsInterface(bytes4 _interfaceId) public view override(IERC165, ERC721) returns (bool) {
-        bytes4 bridgingSupportedInterface = IL2StandardERC721.l1Contract.selector
-            ^  IL2StandardERC721.mint.selector
-            ^ IL2StandardERC721.burn.selector
+        bytes4 bridgingSupportedInterface = IL1StandardERC721.l2Contract.selector
+            ^  IL1StandardERC721.mint.selector
+            ^ IL1StandardERC721.burn.selector
             ^ this.bridgeExtraData.selector;
         return _interfaceId == bridgingSupportedInterface || super.supportsInterface(_interfaceId);
     }
@@ -61,10 +60,10 @@ contract MultiverseShip is IL2StandardERC721, ERC721, Ownable {
         return networkBridges[dstChainId];
     }
 
-    // Sets the address returned by IL2StandardERC721.l1Contract()
-    // This provides compliance with IL2StandardERC721 and the bridge's supportsInterface()
-    function setL1Contract(address _l1Contract) public onlyOwner {
-        l1Contract = _l1Contract;
+    // Sets the address returned by IL1StandardERC721.l2Contract()
+    // This provides compliance with IL1StandardERC721 and the bridge's supportsInterface()
+    function setL1Contract(address _l2Contract) public onlyOwner {
+        l2Contract = _l2Contract;
     }
 
     // Mint if called by the Game contract
