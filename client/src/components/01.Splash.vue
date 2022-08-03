@@ -6,7 +6,7 @@ import btn from './ui-primitives/button-basic.svg.vue'
 import logo from './assets/logo.svg.vue'
 import ship from './assets/ship08.svg.vue'
 import portal from './assets/portal.svg.vue'
-import star from './assets/star.svg.vue'
+import starfield from './assets/starfield.svg.vue'
 
 import { useUI } from '../stores/ui'
 import { useRouting } from '../stores/routing'
@@ -49,15 +49,7 @@ export default {
       </text>
 
     <g>
-      <g transform="translate(-300 -100) scale(0.25)">
-        <star />
-      </g>
-      <g transform="translate(200 -150) scale(0.2)">
-        <star />
-      </g>
-      <g transform="translate(100 150) scale(0.1)">
-        <star />
-      </g>
+      <starfield />
 
       <animateTransform
         attributeName="transform"

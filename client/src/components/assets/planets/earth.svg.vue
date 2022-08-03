@@ -28,32 +28,23 @@ export default {
 
 
 <template>
-  <g id="earth-glump">
+  <g>
     <g>
       <planet
         :classification="0"
-        :size="12"
+        :size="10"
         :rotationPeriod="rotationPeriod"
-      />
-      <animateTransform
-        attributeName="transform"
-        attributeType="XML"
-        type="rotate"
-        from="0"
-        to="360"
-        :dur="rotationPeriod+'s'"
-        repeatCount="indefinite"
       />
     </g>
     <g v-if="showMoons">
-      <orbit :duration="40" :distance="75">
+      <orbit :duration="40" :distance="-60">
         <moon
           :size="10"
         />
       </orbit>
     </g>
     <g v-if="showStation">
-      <orbit :duration="65" :distance="45">
+      <orbit :duration="65" :distance="40">
         <station
           :size="6"
         />

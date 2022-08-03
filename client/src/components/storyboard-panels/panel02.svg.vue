@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useUI } from '../../stores/ui'
-import planets from '../assets/planets/planets.svg.vue'
+import planets from '../assets/planets/_planets.svg.vue'
 </script>
 
 <script lang="ts">
@@ -9,28 +9,21 @@ export default {
   data() {
     return {
       ui: useUI(),
-      showMoons: true,
-      showStation: true
+      expansion: 0.15
     }
+  },
+  methods: {
+    expand() {
+      this.expansion = 1
+    }
+  },
+  mounted() {
+    this.$refs.zoomin.beginElement()
+    setTimeout(() => { this.expand() }, 10)
   },
   props: {
   },
   computed: {
-    hMult() {
-      if (this.ui.portrait) {
-        return 1
-      }
-      return 2.5
-    },
-    vmult() {
-      if (this.ui.landscape) {
-        return 1
-      }
-      return 2.5
-    },
-    pScale() {
-      return 1
-    }
   }
 }
 </script>
@@ -38,25 +31,29 @@ export default {
 <template>
 <g>
 
-  <g fill="freeze">
-
-    <planets />
+  <g id="planets">
+    <g>
+      <planets :expansion="expansion" :showSats="true" />
+    </g>
 
     <animateTransform
+      ref="zoomin"
+      xlink:href="#planets"
       attributeName="transform"
       attributeType="XML"
-      type="translate"
-
-      dur="3s"
-
-      values="0 1000; 0 -20; 0 0"
-      keyTimes="0; 0.25; 1"
-
+      type="scale"
+      dur="1.5s"
+      values="2.5; 1"
+      keyTimes="0; 1"
       calcMode="linear"
+      restart="always"
       fill="freeze"
       repeatCount="1"
+      additive="sum"
     />
+
   </g>
+
 
 </g>
 </template>

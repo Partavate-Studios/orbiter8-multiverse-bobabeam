@@ -32,23 +32,14 @@ export default {
     <g>
       <planet
         :classification="1"
-        :size="3"
+        :size="6"
         :rotationPeriod="rotationPeriod"
-      />
-      <animateTransform
-        attributeName="transform"
-        attributeType="XML"
-        type="rotate"
-        from="0"
-        to="360"
-        :dur="rotationPeriod+'s'"
-        repeatCount="indefinite"
       />
     </g>
     <g v-if="showMoons">
     </g>
     <g v-if="showStation">
-      <orbit :duration="60" :distance="30">
+      <orbit :duration="60" :distance="25">
         <station
           :size="1"
         />

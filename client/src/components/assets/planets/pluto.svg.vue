@@ -35,15 +35,6 @@ export default {
         :size="1"
         :rotationPeriod="rotationPeriod"
       />
-      <animateTransform
-        attributeName="transform"
-        attributeType="XML"
-        type="rotate"
-        from="0"
-        to="360"
-        :dur="rotationPeriod+'s'"
-        repeatCount="indefinite"
-      />
     </g>
     <g v-if="showMoons">
       <orbit :duration="40" :distance="40">

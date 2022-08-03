@@ -25,19 +25,19 @@ export default {
       routing: useRouting(),
       words: [
         [
-          'It is the year 2140.',
-          'Humans are in space.',
-          '',
+          'In the year 2140',
+          'humans inhabit all',
+          'of our planets.',
         ],
         [
-          'Civilization now spreads',
-          'across single every planet',
-          'of our solar system.',
+          'Bound to our sun,',
+          'this was as far',
+          'as we could go.',
         ],
         [
-          'For the first time in history,',
-          'we are looking beyond the sun.',
-          'Everything has changed.',
+          'Until the Orbiter 8! ',
+          'The first intersteller ships',
+          'have unlocked the galaxy.',
         ],
         [
           'Now They\'re Settling Across The Galaxy',
@@ -66,7 +66,7 @@ export default {
         this.panel --
       }
     },
-    switchTo(n) {
+    switchTo(n:number) {
       if ((n >= 0) && (n < this.panelCount)) {
         this.panel = n
       }
@@ -81,13 +81,13 @@ export default {
 <template>
   <svgContainer>
 
-    <backdrop transform="scale(0.5)" />
+    <backdrop transform="scale(2)" />
 
-    <panel01 v-if="panel == 0" v-on:next="next" />
-    <panel02 v-if="panel == 1" v-on:pre="prev()" v-on:next="next" />
-    <panel03 v-if="panel == 2" v-on:pre="prev()" v-on:next="next" />
-    <panel04 v-if="panel == 3" v-on:pre="prev()" v-on:next="next" />
-    <panel05 v-if="panel == 4" v-on:pre="prev()" v-on:next="next" />
+    <panel01 v-if="panel == 0" v-on:next="next"   />
+    <panel02 v-if="panel == 1" v-on:pre="prev()" v-on:next="next"      />
+    <panel03 v-if="panel == 2" v-on:pre="prev()" v-on:next="next"     />
+    <panel04 v-if="panel == 3" v-on:pre="prev()" v-on:next="next"     />
+    <panel05 v-if="panel == 4" v-on:pre="prev()" v-on:next="next"     />
     <panel06 v-if="panel == 5" v-on:pre="prev()" v-on:finish="finish" />
 
 
@@ -154,4 +154,8 @@ export default {
 </template>
 
 <style scoped>
+
+.smooth {
+  transition: 0.25s ease-out;
+}
 </style>

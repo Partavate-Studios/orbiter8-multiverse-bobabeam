@@ -111,7 +111,8 @@ export default {
     align-items: center;
     text-align: center;
     overflow: hidden;
-
+    min-width: 200px;
+    min-height: 200px;
   }
 
   .is-dragging {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useUI } from '../../stores/ui'
-import earth from '../assets/planets/earth.svg.vue'
+import planets from '../assets/planets/_planets.svg.vue'
 </script>
 
 <script lang="ts">
@@ -8,8 +8,12 @@ export default {
   emits: ['prev', 'next'],
   data() {
     return {
-      ui: useUI()
+      ui: useUI(),
     }
+  },
+  mounted() {
+    this.$refs.fadein.beginElement()
+    this.$refs.zoomout.beginElement()
   },
   props: {
   },
@@ -18,25 +22,40 @@ export default {
 
 <template>
 <g>
-  <g>
-    <g id="earth">
-      <earth />
-
-      <animateTransform
-        attributeName="transform"
-        attributeType="XML"
-        type="scale"
-
-        dur="3s"
-
-        values="0; 2; 1.75"
-        keyTimes="0; 0.75; 1"
-
-        calcMode="linear"
-        fill="freeze"
-        repeatCount="1"
-      />
+  <g id="planets">
+    <g>
+      <planets :expansion="0.15" :showSats="false" />
     </g>
+
+    <animate
+      ref="fadein"
+      xlink:href="#planets"
+      attributeType="CSS"
+      attributeName="opacity"
+      dur="2s"
+      values="0; 1"
+      keyTimes="0; 1"
+      repeatCount="1"
+      restart="always"
+      calcMode="linear"
+      fill="freeze" />
+
+    <animateTransform
+      ref="zoomout"
+      xlink:href="#planets"
+      attributeName="transform"
+      attributeType="XML"
+      type="scale"
+      dur="3s"
+      values="0; 2.25; 2.5"
+      keyTimes="0; 0.75; 1"
+      calcMode="linear"
+      restart="always"
+      fill="freeze"
+      repeatCount="1"
+      additive="sum"
+    />
+
   </g>
 
 </g>
