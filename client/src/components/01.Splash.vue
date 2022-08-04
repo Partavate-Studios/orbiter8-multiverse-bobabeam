@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import svgContainer from './layouts/svgContainer.vue'
 import backdrop from './assets/backdrop.svg.vue'
-import gridlines from './assets/gridlines.svg.vue'
 import btn from './ui-primitives/button-basic.svg.vue'
 import logo from './assets/logo.svg.vue'
 import ship from './assets/ship08.svg.vue'

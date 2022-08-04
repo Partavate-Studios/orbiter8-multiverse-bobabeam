@@ -43,6 +43,9 @@ export default {
         return '0.8'
       }
       return '0.3'
+    },
+    curve():number {
+      return Math.min(this.width, this.height) / 2
     }
   }
 }
@@ -57,9 +60,9 @@ export default {
     :stroke-opacity="strokeOpacity"
     :fill-opacity="fillOpacity"
     stroke="1"
-    rx="10"
-    ry="10" />
-  <text>
+    :rx="curve"
+    :ry="curve" />
+  <text stroke-width="0">
   {{ text }}
   </text>
   <rect
@@ -71,8 +74,8 @@ export default {
     stroke-opacity="0"
     stroke-width="1"
     @click="$emit('click', val)"
-    rx="10"
-    ry="10" />
+    :rx="curve"
+    :ry="curve" />
 </g>
 </template>
 

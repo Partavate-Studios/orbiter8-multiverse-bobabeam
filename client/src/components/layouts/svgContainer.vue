@@ -54,7 +54,7 @@ export default {
     v-on:mousedown="mouseHold = true"
     v-on:mouseup="mouseHold = false"
     text-anchor="middle"
-    dominant-baseline="middle"
+    dominant-baseline="central"
     rendering="auto"
     text-rendering="auto"
     shape-rendering="auto"

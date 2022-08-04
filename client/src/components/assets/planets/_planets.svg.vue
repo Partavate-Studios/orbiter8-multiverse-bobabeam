@@ -80,7 +80,7 @@ export default {
 <template>
 <g>
   <g >
-    <g :transform="'translate(' + (-100 * hMult) + ' ' + (-100 * vMult) +') scale(' + pScale * 6 + ')'" class="smooth">
+    <g :transform="'translate(' + (-100 * hMult) + ' ' + (-100 * vMult) +') scale(' + pScale * 3 + ')'" class="smooth">
       <star />
     </g>
 

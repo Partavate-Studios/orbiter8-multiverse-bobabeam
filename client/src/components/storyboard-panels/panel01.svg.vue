@@ -9,6 +9,7 @@ export default {
   data() {
     return {
       ui: useUI(),
+      expansion: 0.24
     }
   },
   mounted() {
@@ -24,7 +25,7 @@ export default {
 <g>
   <g id="planets">
     <g>
-      <planets :expansion="0.15" :showSats="false" />
+      <planets :expansion="expansion" :showSats="false" />
     </g>
 
     <animate

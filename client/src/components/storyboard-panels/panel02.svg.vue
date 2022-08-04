@@ -9,7 +9,7 @@ export default {
   data() {
     return {
       ui: useUI(),
-      expansion: 0.15
+      expansion: 0.25
     }
   },
   methods: {
