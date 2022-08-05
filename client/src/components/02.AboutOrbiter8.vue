@@ -25,34 +25,34 @@ export default {
       routing: useRouting(),
       words: [
         [
-          'In the year 2140',
-          'humans inhabit all',
-          'of our planets.',
+          'By the year 2140',
+          'humanity populated every',
+          'planet in our solar system.',
         ],
         [
-          'Bound to our sun,',
-          'this was as far',
-          'as we could go.',
+          'Still bound to our sun',
+          'we continued to long',
+          'for the stars.',
         ],
         [
-          'Until the Orbiter 8! ',
-          'The first intersteller ships',
-          'have unlocked the galaxy.',
+          'Then the first starships',
+          'went into mass production,',
+          'unlocking the whole galaxy!',
         ],
         [
-          'Now They\'re Settling Across The Galaxy',
-          '',
-          '',
+          'Orbiter 8 is the ship',
+          'and an MMO strategy game ',
+          'that runs on the EVM.',
         ],
         [
-          'But they found something ancient.',
-          '',
-          '',
+          'Introducing Portals',
+          'allowing starships to cross',
+          'more than just the galaxy.',
         ],
         [
-          'Doors to the Multiverse',
-          '',
-          '',
+          'Portals are Bridges',
+          'Every network is a universe.',
+          'Together, the multiverse.',
         ],
       ]
     }
@@ -91,28 +91,58 @@ export default {
     <panel06 v-if="panel == 5" v-on:pre="prev()" v-on:finish="finish" />
 
 
-    <g :transform="'translate(0 ' + (ui.top + 50) + ')'">
-      <minerva transform="translate(-250 0) scale(0.5)" />
+    <rect
+      x="-300"
+      :y="ui.top + 15"
+      width="600"
+      height="170"
+      fill="#000000"
+      fill-opacity="0.25"
+      stroke="#ffffff"
+      stroke-width="0.5"
+      stroke-opacity="0.25"
+      rx="20"
+      ry="20"
+    />
+
+    <g :transform="'translate(-240 ' + (ui.top + 60) + ')'">
+
+      <rect
+        x="-50"
+        y="-32"
+        width="100"
+        height="64"
+        fill="#280b4b"
+        fill-opacity="1"
+        stroke="#ffffff"
+        stroke-width="1"
+        stroke-opacity="0.25"
+        rx="10"
+        ry="10"
+      />
+      <minerva transform="translate(0 0) scale(0.5)" />
     </g>
 
-    <text
-      font-size="40px"
-      text-anchor="start"
-      :transform="'translate(-180 ' + (ui.top + 50) + ')'
-      ">{{ words[panel][0] }}
-    </text>
-    <text
-      font-size="30px"
-      text-anchor="start"
-      :transform="'translate(-150 ' + (ui.top + 100) + ')'
-      ">{{ words[panel][1] }}
-    </text>
-    <text
-      font-size="30px"
-      text-anchor="start"
-      :transform="'translate(-150 ' + (ui.top + 150) + ')'
-      ">{{ words[panel][2] }}
-    </text>
+    <g transform="translate(-170 0)">
+      <text
+        font-size="40px"
+        text-anchor="start"
+        :transform="'translate(0 ' + (ui.top + 50) + ')'
+        ">{{ words[panel][0] }}
+      </text>
+      <text
+        font-size="30px"
+        text-anchor="start"
+        :transform="'translate(0 ' + (ui.top + 100) + ')'
+        ">{{ words[panel][1] }}
+      </text>
+      <text
+        font-size="30px"
+        text-anchor="start"
+        :transform="'translate(0 ' + (ui.top + 150) + ')'
+        ">{{ words[panel][2] }}
+      </text>
+    </g>
 
 
     <g :transform="'translate(0 ' + (ui.bottom - 50) + ')'">
