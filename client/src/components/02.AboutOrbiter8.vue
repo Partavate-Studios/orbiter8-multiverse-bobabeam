@@ -7,7 +7,7 @@ import panel03 from './storyboard-panels/panel03.svg.vue'
 import panel04 from './storyboard-panels/panel04.svg.vue'
 import panel05 from './storyboard-panels/panel05.svg.vue'
 import panel06 from './storyboard-panels/panel06.svg.vue'
-import minerva from './assets/minerva.svg.vue'
+import minerva from './assets/minervaBox.svg.vue'
 import backdrop from './assets/backdrop.svg.vue'
 
 
@@ -40,8 +40,8 @@ export default {
           'unlocking the whole galaxy!',
         ],
         [
-          'Orbiter 8 is the ship',
-          'and an MMO strategy game ',
+          'Orbiter 8',
+          'An MMO strategy game ',
           'that runs on the EVM.',
         ],
         [
@@ -83,65 +83,77 @@ export default {
 
     <backdrop transform="scale(2)" />
 
-    <panel01 v-if="panel == 0" v-on:next="next"   />
-    <panel02 v-if="panel == 1" v-on:pre="prev()" v-on:next="next"      />
-    <panel03 v-if="panel == 2" v-on:pre="prev()" v-on:next="next"     />
-    <panel04 v-if="panel == 3" v-on:pre="prev()" v-on:next="next"     />
-    <panel05 v-if="panel == 4" v-on:pre="prev()" v-on:next="next"     />
+    <panel01 v-if="panel == 0" v-on:next="next" />
+    <panel02 v-if="panel == 1" v-on:pre="prev()" v-on:next="next" />
+    <panel03 v-if="panel == 2" v-on:pre="prev()" v-on:next="next" />
+    <panel04 v-if="panel == 3" v-on:pre="prev()" v-on:next="next" />
+    <panel05 v-if="panel == 4" v-on:pre="prev()" v-on:next="next" />
     <panel06 v-if="panel == 5" v-on:pre="prev()" v-on:finish="finish" />
 
+    <g :transform="'translate(0 ' + (ui.top + 15) + ')'">
+      <g transform="scale(1)">
+        <g fill="#000000"
+          fill-opacity="0.25"
+          stroke="#ffffff"
+          stroke-width="0.5"
+          stroke-opacity="0.25">
+          <rect
+            v-if="ui.portrait"
+            x="-290"
+            y="0"
+            width="590"
+            height="170"
+            rx="20"
+            ry="20"
+          />
+          <rect
+            v-else
+            x="-390"
+            y="0"
+            width="790"
+            height="115"
+            rx="20"
+            ry="20"
+          />
+        </g>
 
-    <rect
-      x="-300"
-      :y="ui.top + 15"
-      width="600"
-      height="170"
-      fill="#000000"
-      fill-opacity="0.25"
-      stroke="#ffffff"
-      stroke-width="0.5"
-      stroke-opacity="0.25"
-      rx="20"
-      ry="20"
-    />
+        <g v-if="ui.portrait" transform="translate(-250 45)">
+          <minerva transform="translate(0 0) scale(0.5)" />
+        </g>
+        <g v-else transform="translate(-350 45)">
+          <minerva transform="translate(0 0) scale(0.5)" />
+        </g>
 
-    <g :transform="'translate(-240 ' + (ui.top + 60) + ')'">
-
-      <rect
-        x="-50"
-        y="-32"
-        width="100"
-        height="64"
-        fill="#280b4b"
-        fill-opacity="1"
-        stroke="#ffffff"
-        stroke-width="1"
-        stroke-opacity="0.25"
-        rx="10"
-        ry="10"
-      />
-      <minerva transform="translate(0 0) scale(0.5)" />
-    </g>
-
-    <g transform="translate(-170 0)">
-      <text
-        font-size="40px"
-        text-anchor="start"
-        :transform="'translate(0 ' + (ui.top + 50) + ')'
-        ">{{ words[panel][0] }}
-      </text>
-      <text
-        font-size="30px"
-        text-anchor="start"
-        :transform="'translate(0 ' + (ui.top + 100) + ')'
-        ">{{ words[panel][1] }}
-      </text>
-      <text
-        font-size="30px"
-        text-anchor="start"
-        :transform="'translate(0 ' + (ui.top + 150) + ')'
-        ">{{ words[panel][2] }}
-      </text>
+        <g v-if="ui.portrait" transform="translate(-170 0)" text-anchor="start">
+          <text
+            font-size="40px"
+            transform="translate(0 35)"
+          >{{ words[panel][0] }}
+          </text>
+          <text
+            font-size="30px"
+            transform="translate(0 85)"
+          >{{ words[panel][1] }}
+          </text>
+          <text
+            font-size="30px"
+            transform="translate(0 135)"
+          >{{ words[panel][2] }}
+          </text>
+        </g>
+        <g v-else transform="translate(-275 0)" text-anchor="start">
+          <text
+            font-size="35px"
+            transform="translate(0 35)"
+          >{{ words[panel][0] }}
+          </text>
+          <text
+            font-size="25px"
+            transform="translate(0 85)"
+          >{{ words[panel][1] }} {{ words[panel][2] }}
+          </text>
+        </g>
+      </g>
     </g>
 
 
@@ -182,7 +194,7 @@ export default {
             transform="scale(1.75)" />
           <btn
             :width="60" :height="20"
-            @click="finish" text="Connect"
+            @click="finish" text="Try It"
             v-else
             transform="scale(2)" />
         </g>

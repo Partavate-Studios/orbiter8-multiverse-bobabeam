@@ -2,7 +2,6 @@
 import { useUI } from '../../stores/ui'
 import planets from '../assets/planets/_planets.svg.vue'
 import starfield from '../assets/starfield.svg.vue'
-import star from '../assets/star.svg.vue'
 </script>
 
 <script lang="ts">
@@ -25,10 +24,8 @@ export default {
   },
   mounted() {
     this.$refs.fadeinlater.beginElement()
-    this.$refs.fadein.beginElement()
     this.$refs.fadeout.beginElement()
     this.$refs.zoomaway.beginElement()
-    this.$refs.zoomin.beginElement()
     setTimeout(() => { this.expand() }, 10)
   },
 }
@@ -36,15 +33,22 @@ export default {
 
 <template>
 <g>
+  <circle
+    r="275"
+    stroke-dasharray="4 2"
+    stroke-width="0.25"
+    stroke-opacity="0.5"
+    stroke="#ff88ff"
+    fill-opacity="0" />
   <g id="starfield">
-    <starfield :showLines="true" />
+    <starfield :showLines="true"  transform="scale(0.5)"/>
   </g>
   <animate
     ref="fadeinlater"
     xlink:href="#starfield"
     attributeType="CSS"
     attributeName="opacity"
-    dur="6s"
+    dur="4s"
     values="0; 0; 1"
     keyTimes="0; 0.5; 1"
     repeatCount="1"
@@ -59,39 +63,10 @@ export default {
     type="rotate"
     from="0"
     to="360"
-    dur="600s"
+    dur="360s"
     repeatCount="indefinite"
   />
 
-  <g>
-    <star id="sol" />
-  </g>
-  <animateTransform
-    ref="zoomin"
-    xlink:href="#sol"
-    attributeName="transform"
-    attributeType="XML"
-    type="scale"
-    dur="3s"
-    values="0; 0.5"
-    keyTimes="0; 1"
-    calcMode="linear"
-    restart="always"
-    fill="freeze"
-    repeatCount="1"
-  />
-  <animate
-    ref="fadein"
-    xlink:href="#sol"
-    attributeType="CSS"
-    attributeName="opacity"
-    dur="1s"
-    values="0; 1"
-    keyTimes="0; 1"
-    repeatCount="1"
-    restart="always"
-    calcMode="linear"
-    fill="freeze" />
 
   <g id="planets">
     <g>
@@ -118,7 +93,7 @@ export default {
     xlink:href="#planets"
     attributeType="CSS"
     attributeName="opacity"
-    dur="2s"
+    dur="3s"
     values="1; 0"
     keyTimes="0; 1"
     repeatCount="1"
