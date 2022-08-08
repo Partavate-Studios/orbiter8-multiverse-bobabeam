@@ -53,14 +53,12 @@ const config: HardhatUserConfig = {
   etherscan: {
     apiKey: {
       rinkeby: process.env.ETHERSCAN_API_KEY ?? "",
-      // Unable to locate where to obtain API Keys
       moonbaseAlpha: process.env.MOONBEAM_API_KEY ?? "",
+      // Uses Blockscout, not etherscan. No accounts, but takes any string!
       bobabase: process.env.BOBASCAN_API_KEY ?? "",
     },
     customChains: [
       {
-        // Note: This doesn't work. Only Mainnet/Rinkeby Boba has an Etherscan API
-        // As of 2022.08.03, The Bobabase L2 does not have an Etherscan API
         network: "bobabase",
         chainId: 1297,
         urls: {
