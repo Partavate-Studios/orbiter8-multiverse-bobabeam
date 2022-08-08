@@ -4,6 +4,8 @@ import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 import dotenv from "dotenv";
 
+import("./tasks/verify-published")
+
 dotenv.config();
 
 const config: HardhatUserConfig = {
@@ -50,19 +52,30 @@ const config: HardhatUserConfig = {
   },
   etherscan: {
     apiKey: {
-      rinkeby: process.env.ETHERSCAN_API_KEY !== undefined ? process.env.ETHERSCAN_API_KEY : "",
+      rinkeby: process.env.ETHERSCAN_API_KEY ?? "",
       // Unable to locate where to obtain API Keys
-      // moonbaseAlpha: process.env.MOONBASEALPHA_API_KEY,
+      moonbaseAlpha: process.env.MOONBEAM_API_KEY ?? "",
+      bobabase: process.env.BOBASCAN_API_KEY ?? "",
     },
     customChains: [
       {
+        // Note: This doesn't work. Only Mainnet/Rinkeby Boba has an Etherscan API
+        // As of 2022.08.03, The Bobabase L2 does not have an Etherscan API
         network: "bobabase",
         chainId: 1297,
         urls: {
           apiURL: "https://blockexplorer.bobabase.boba.network/api",
           browserURL: "https://blockexplorer.bobabase.boba.network"
         }
-      }
+      },
+      {
+        network: "moonbaseAlpha",
+        chainId: 1287,
+        urls: {
+          apiURL: "https://api-moonbase.moonscan.io/api",
+          browserURL: "https://moonbase.moonscan.io/"
+        }
+      },
     ]
   }
 };
