@@ -2,6 +2,8 @@
 // Written for the game Orbiter 8, by Partavate Studios
 
 // Usage: `npx ts-node scripts/bridge.ts --destination={bobabase|moonbase} --ship=shipId`
+// Partavate Owner: Use Ship id 1287 for boba->moonbase, 1297 for moonbase->boba (same as source chain id)
+
 // NOTE: Do run run via `npx hardhat run`, use `npx ts-node` directly (Hardhat scripts can't have arguments)
 // The SOURCE network is set by the network named in the first argument. (NOT using `--network`)
 
@@ -52,9 +54,9 @@ class Config {
   }
 
   // From ../addresses/published-addresses.json (@TODO use `getDeployment()`)
-  public MoonbaseShipContractAddress = '0x4dEdce8EDCD60ED9dA91b55c1E9e76e23830535d'
-  public BobabaseShipContractAddress = '0x2AA7935255d88Af930bA66153CA22506490562cb'
-  
+  public MoonbaseShipContractAddress = getDeployment(this.chainIds['moonbase'])
+  public BobabaseShipContractAddress = getDeployment(this.chainIds['bobabase'])
+
   // From https://github.com/bobanetwork/boba/blob/develop/packages/boba/register/addresses/addressesBobaBase_0xF8d0bF3a1411AC973A606f90B2d1ee0840e5979B.json
   // TODO: Boba has an AddressManager contract, but without an ABI, we can't use it...
   public ADDRESS_MANAGER_ADDRESS = '0x93A96D6A5beb1F661cf052722A1424CDDA3e9418'
@@ -161,6 +163,7 @@ const bridgeMoonbaseToBobaBase = async (shipId: number) => {
   const approveTx = await L1Ship.approve(cfg.L1NFTBridgeAddress, shipId)
   await approveTx.wait()
 
+  // @TODO: 2022.08.09: Reverts here, due to needing registration in L1NFTBridge.pairNFTInfo
   const L1NFTBridge = new Contract(cfg.L1NFTBridgeAddress, L1NFTBridgeJson, payerAccount)
 
   const tx = await L1NFTBridge.depositNFT(
