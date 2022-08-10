@@ -54,7 +54,7 @@ export default {
     v-on:mousedown="mouseHold = true"
     v-on:mouseup="mouseHold = false"
     text-anchor="middle"
-    dominant-baseline="middle"
+    dominant-baseline="central"
     rendering="auto"
     text-rendering="auto"
     shape-rendering="auto"
@@ -111,7 +111,8 @@ export default {
     align-items: center;
     text-align: center;
     overflow: hidden;
-
+    min-width: 200px;
+    min-height: 200px;
   }
 
   .is-dragging {

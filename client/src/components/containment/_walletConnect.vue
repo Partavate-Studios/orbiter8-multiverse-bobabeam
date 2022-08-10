@@ -30,19 +30,18 @@ export default {
 </script>
 
 <template>
-  <g :transform="'translate(0 ' + (ui.top + 80) + ')'">
-    <g transform="scale(0.5)">
+  <g :transform="'translate(0 ' + (ui.bottom - 80) + ')'">
+    <g transform="scale(0.25)">
     <logo />
     </g>
-    <line :x1="ui.left + 50" :x2="ui.right-50" y1="60" y2="60" stroke="#ffffff44" stroke-width="4" />
   </g>
-  <text font-size="2em" :transform="'translate(0 ' + (ui.top + 200) + ')'">Wallet Collect</text>
+  <text font-size="2em" :transform="'translate(0 ' + (ui.top + 150) + ')'">Please connect your wallet.</text>
 
-  <btn transform="translate(0 -20)" @click="connectWallet" text="Connect Your Wallet" />
+  <btn font-size="30" :height="80" transform="translate(0 -20)" @click="connectWallet" text="Connect Wallet" />
 
-  <btn transform="translate(0 20)" @click="createWallet" text="Create Wallet" />
 
-<text font-size="1em" :transform="'translate(0 ' + (200) + ')'">{{ wallet.status }}</text>
+  <text fill="#888888" font-size="0.9em" :transform="'translate(0 ' + (250) + ')'">{{ wallet.status }}</text>
+
 </template>
 
 <style scoped>

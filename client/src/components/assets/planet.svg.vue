@@ -51,10 +51,8 @@ export default {
 
     <circle cx="0" cy="0" r="12" stroke="none" fill="#ffffff00" />
 
-    <circle cx="0" cy="0" r="10" stroke="#c3b3da" stroke-width="0.25" fill="url(#planetGradient)" />
-
-    <g clip-path="url(#just-the-planet)">
-
+    <g transform="rotate(30)">
+      <circle cx="0" cy="0" r="10" stroke="#c3b3da" stroke-width="0.25" fill="url(#planetGradient)" />
       <animateTransform
         v-if="rotationPeriod > 0"
         attributeName="transform"
@@ -65,6 +63,9 @@ export default {
         :dur="rotationPeriod+'s'"
         animate="freeze"
         repeatCount="indefinite"/>
+    </g>
+
+    <g clip-path="url(#just-the-planet)">
 
       <g v-if="classification == 0"  stroke-width="0.5" stroke="#ffffff11" fill="#ffffff22" >
       <!-- Earth Like -->
