@@ -5,6 +5,8 @@ import "@nomicfoundation/hardhat-toolbox";
 import dotenv from "dotenv";
 
 import("./tasks/verify-published")
+import("./tasks/mint")
+import("./tasks/register-foreign")
 
 dotenv.config();
 
@@ -35,7 +37,7 @@ const config: HardhatUserConfig = {
       accounts:
         process.env.BOBABASE_PRIVATE_KEY !== undefined ? [process.env.BOBABASE_PRIVATE_KEY] : [],
     },
-    moonbaseAlpha: {
+    moonbase: {
       chainId: 1287,
       url: process.env.MOONBASEALPHA_RPC_URI,
       accounts:
@@ -53,7 +55,7 @@ const config: HardhatUserConfig = {
   etherscan: {
     apiKey: {
       rinkeby: process.env.ETHERSCAN_API_KEY ?? "",
-      moonbaseAlpha: process.env.MOONBEAM_API_KEY ?? "",
+      moonbase: process.env.MOONBEAM_API_KEY ?? "",
       // Uses Blockscout, not etherscan. No accounts, but takes any string!
       bobabase: process.env.BOBASCAN_API_KEY ?? "",
     },
@@ -67,7 +69,7 @@ const config: HardhatUserConfig = {
         }
       },
       {
-        network: "moonbaseAlpha",
+        network: "moonbase",
         chainId: 1287,
         urls: {
           apiURL: "https://api-moonbase.moonscan.io/api",
