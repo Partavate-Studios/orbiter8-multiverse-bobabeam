@@ -1,8 +1,7 @@
 // Simple NFT Bridging using Boba + Moonbeam
 // Written for the game Orbiter 8, by Partavate Studios
-// THIS IS UNTESTED (due to missing Boba APIs, and undefined `L2BOBAToken`)
 
-// Usage: `npx ts-node scripts/bridge.ts (bobabase|moonbase} shipId`
+// Usage: `npx ts-node scripts/bridge.ts --destination={bobabase|moonbase} --ship=shipId`
 // NOTE: Do run run via `npx hardhat run`, use `npx ts-node` directly (Hardhat scripts can't have arguments)
 // The SOURCE network is set by the network named in the first argument. (NOT using `--network`)
 
@@ -19,16 +18,18 @@
 const { Contract, providers, Wallet, ethers, utils } = require('ethers')
 const { getContractFactory } = require('@eth-optimism/contracts')
 require('dotenv').config()
+const yargs = require('yargs/yargs')
+const { hideBin } = require('yargs/helpers')
 
+// Boba Imports (Compiled in cloned BobaNetwork/boba repo, ABIs generated with hardhat-abi-exporter)
+// NOTE: These don't have a .abi sub-object, use them directly
+const L1NFTBridgeJson = require('../artifacts/contracts/vendor/boba/L1NFTBridge.json')
+const L2NFTBridgeJson = require('../artifacts/contracts/vendor/boba/L2NFTBridge.json')
+const BOBABillingContractJson = require('../artifacts/contracts/vendor/boba/L2BillingContract.json')
+const L2GovernanceERC20Json = require('../artifacts/contracts/vendor/boba/L2GovernanceERC20.json')
 
-// Boba Imports
-// @BLOCKED: We lack the L{1,2}NFTBridgeJson artifacts. Requested at https://discord.com/channels/795820411836563466/841128990588534844/1006297196863443045
-const L1NFTBridgeJson = require('@boba/contracts/artifacts/contracts/bridges/L1NFTBridge.sol/L1NFTBridge.json')
-const L2NFTBridgeJson = require('@boba/contracts/artifacts/contracts/bridges/L2NFTBridge.sol/L2NFTBridge.json')
-const BOBABillingContractJson = require('@boba/contracts/artifacts/contracts/L2BillingContract.sol.sol/L2BillingContract.json')
-
-// Partavate Studios Contracts
-const MoonbaseShipERC721Json =  require('../artifacts/contracts/MultiverseShip.L2.sol/MultiverseShip_L1.json')
+// Partavate Studios Contracts (ABI is <name>.abi)
+const MoonbaseShipERC721Json = require('../artifacts/contracts/MultiverseShip.L1.sol/MultiverseShip_L1.json')
 const BobabaseShipERC721Json = require('../artifacts/contracts/MultiverseShip.L2.sol/MultiverseShip_L2.json')
 
 // Partavate Studios Utilities
@@ -51,8 +52,8 @@ class Config {
   }
 
   // From ../addresses/published-addresses.json (@TODO use `getDeployment()`)
-  public MoonbaseShipContractAddress = '0x2AA7935255d88Af930bA66153CA22506490562cb'
-  public BobabaseShipContractAddress = '0x4dEdce8EDCD60ED9dA91b55c1E9e76e23830535d'
+  public MoonbaseShipContractAddress = '0x4dEdce8EDCD60ED9dA91b55c1E9e76e23830535d'
+  public BobabaseShipContractAddress = '0x2AA7935255d88Af930bA66153CA22506490562cb'
   
   // From https://github.com/bobanetwork/boba/blob/develop/packages/boba/register/addresses/addressesBobaBase_0xF8d0bF3a1411AC973A606f90B2d1ee0840e5979B.json
   // TODO: Boba has an AddressManager contract, but without an ABI, we can't use it...
@@ -61,20 +62,25 @@ class Config {
   public L2NFTBridgeAddress = '0x64371C6b9acFDBC14A98CD794a531Ff737Ef0F98'
 
   public BOBABillingContractAddress = '0x05C9f36D901594D220311B211fA26DbD58B87717'
+  public L2BOBATokenAddress = '0x4200000000000000000000000000000000000006'
 }
 
 
-const parseArgs = () => {
-  if (process.argv.length , 3) {
-    console.error(`Usage: npx ts-node (bobabase|moonbase} shipId`)
-    process.exit(2)
-  }
-  // Super crude, but works.
-  const destNetwork = process.argv.at(-2)
-  const shipId = process.argv.at(-3)
-  return { destNetwork, shipId }
+const parseArgs = (): [string, number] => {
+  const argv = yargs(hideBin(process.argv)).options({
+    destination: { 
+      type: 'string', 
+      describe: "Destination network for teleport", 
+      demandOption: true, 
+      choices: ['bobabase', 'moonbase']
+    },
+    ship: { type: 'number', 
+      describe: "Ship's NFT token id", 
+      demandOption: true 
+    },
+  }).argv;
+  return [argv.destination, argv.ship]
 }
-
 
 const getNFTContractAddress = (chainId: number): string => {
   return getDeployment(chainId)
@@ -84,27 +90,24 @@ const getNFTContractAddress = (chainId: number): string => {
 // For running in HardHat project context (uses PRIV_KEY in .env):
 // NOTE: This connects to the given chainId's RPC, not what's given in `--network`
 const getWalletFromEnv = (chainId: number, cfg: Config) => {
-
   let provider = new providers.JsonRpcProvider(cfg.RPC_URIS[chainId])
   return new Wallet(cfg.PRIV_KEYS[chainId]).connect(provider) 
-
 }
 
 const main = async () => {
-  let { destNetwork, shipId } = parseArgs()
+  let [ destNetwork, shipId ] = parseArgs()
 
-  if (process.argv.at(-1) == "moonbase") {
+  if (destNetwork == "moonbase") {
     console.log("Teleporting ship from Bobabase to Moonbase Alpha")
-    // bridgeBobaBaseToMoonbase(shipId)
+    bridgeBobaBaseToMoonbase(shipId)
 
-  } else if (process.argv.at(-1) == "bobabase") {
+  } else if (destNetwork == "bobabase") {
     console.log("Teleporting ship from Moonbase Alpha to Bobabase")
-    // 
-
+    bridgeMoonbaseToBobaBase(shipId)
+    
   } else {
     console.error("Error: Must specify destination network as parameter (bobabase, moonbase)");
   }
-  console.log(process.argv)
 
 }
 
@@ -117,21 +120,26 @@ const bridgeBobaBaseToMoonbase = async (shipId: number) => {
   let payerAccount = getWalletFromEnv(cfg.chainIds['bobabase'], cfg)
 
   // Approve transferring the Ship NFT to the L2 Bridge
-  const L2NFT = new Contract(cfg.BobabaseShipContractAddress, BobabaseShipERC721Json.abi, payerAccount)
-  const approveTx = await L2NFT.approve(cfg.L2NFTBridgeAddress, shipId)
+  const L2Ship = new Contract(cfg.BobabaseShipContractAddress, BobabaseShipERC721Json.abi, payerAccount)
+  const approveTx = await L2Ship.approve(cfg.L2NFTBridgeAddress, shipId)
   await approveTx.wait()
 
   // Exit Fee, which L1 bridge must pay to the L1 network. (We pay the L2 bridge in advance)
-  const BOBABillingContract = new Contract(cfg.BOBABillingContractAddress, BOBABillingContractJson.abi)
+  const BOBABillingContract = new Contract(cfg.BOBABillingContractAddress, BOBABillingContractJson, payerAccount)
   const exitFee = await BOBABillingContract.exitFee()
-  // @BLOCKED: Is L2BOBAToken the ERC20? Not sure what's needed here for address/ABI 
-  const approveBOBATx = await L2BOBAToken.approve(  //                                    <---------- BROKEN CODE 
-    cfg.L2NFTBridgeAddress,
-    exitFee
-  )
+
+  console.log(`Exit Fee is: ${utils.formatEther(exitFee)} BOBA`)
+  // NOTE: I get 1000000000000000000 or 1 BOBA)
+
+  // @TODO: This was taken from Boba integration tests, and may not be accurate.
+  const L2BOBAToken = new Contract(cfg.L2BOBATokenAddress, L2GovernanceERC20Json, payerAccount)
+
+  // This reverts with an error: "reason: 'execution reverted: L2_BOBA: approve is disabled pending further community discussion."
+  // (See GitHub issue https://github.com/Partavate-Studios/orbiter8-multiverse-bobabeam/issues/13)
+  const approveBOBATx = await L2BOBAToken.approve(cfg.L2NFTBridgeAddress, exitFee)
   await approveBOBATx.wait()
 
-  const L2NFTBridge = new Contract(cfg.L2NFTBridgeAddress, L2NFTBridgeJson.abi, payerAccount)
+  const L2NFTBridge = new Contract(cfg.L2NFTBridgeAddress, L2NFTBridgeJson, payerAccount)
 
   const tx = await L2NFTBridge.withdraw(
     cfg.BobabaseShipContractAddress, 
@@ -149,11 +157,11 @@ const bridgeMoonbaseToBobaBase = async (shipId: number) => {
   let payerAccount = getWalletFromEnv(cfg.chainIds['moonbase'], cfg)
 
   // Approve transferring the Ship NFT to the L2 Bridge
-  const L1NFT = new Contract(cfg.MoonbaseShipContractAddress, MoonbaseShipERC721Json.abi, payerAccount)
-  const approveTx = await L1NFT.approve(cfg.L1NFTBridgeAddress, shipId)
+  const L1Ship = new Contract(cfg.MoonbaseShipContractAddress, MoonbaseShipERC721Json.abi, payerAccount)
+  const approveTx = await L1Ship.approve(cfg.L1NFTBridgeAddress, shipId)
   await approveTx.wait()
 
-  const L1NFTBridge = new Contract(cfg.L1NFTBridgeAddress, L1NFTBridgeJson.abi, payerAccount)
+  const L1NFTBridge = new Contract(cfg.L1NFTBridgeAddress, L1NFTBridgeJson, payerAccount)
 
   const tx = await L1NFTBridge.depositNFT(
     cfg.MoonbaseShipContractAddress,
