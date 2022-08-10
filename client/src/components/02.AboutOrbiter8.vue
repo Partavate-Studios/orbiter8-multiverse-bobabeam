@@ -25,34 +25,34 @@ export default {
       routing: useRouting(),
       words: [
         [
-          'By the year 2140',
-          'humanity populated every',
-          'planet in our solar system.',
+          'By the year 2140,',
+          'every planet in our solar',
+          'system is overpopulated.',
         ],
         [
-          'Still bound to our sun',
+          'Still bound to our sun,',
           'we continued to long',
-          'for the stars.',
+          'to explore the stars.',
         ],
         [
-          'Then the first starships',
-          'went into mass production,',
-          'unlocking the whole galaxy!',
+          'With Orbiter 8,',
+          'the first starships',
+          'have arrived.',
         ],
         [
-          'Orbiter 8',
-          'An MMO strategy game ',
-          'that runs on the EVM.',
+          'Orbiter 8 is an MMO',
+          'strategy game built ',
+          'for the EVM.',
         ],
         [
-          'Introducing Portals',
-          'allowing starships to cross',
+          'Introducing Portals!',
+          'Starships will soon cross',
           'more than just the galaxy.',
         ],
         [
           'Portals are Bridges',
-          'Every network is a universe.',
-          'Together, the multiverse.',
+          'connecting distinct universes',
+          'into a multiverse.',
         ],
       ]
     }
