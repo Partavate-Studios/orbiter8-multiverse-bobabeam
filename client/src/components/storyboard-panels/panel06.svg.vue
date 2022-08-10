@@ -19,6 +19,9 @@ export default {
   },
   props: {
   },
+  mounted() {
+    this.$refs.fadeinnet.beginElement()
+  },
   computed: {
   }
 }
@@ -71,42 +74,57 @@ export default {
       stroke="#ccff00" />
     <boba transform="translate(0 9) scale(0.15)" />
   </g>
-  <g transform="translate(140 65) scale(0.75)">
-    <circle
-      r="35"
-      fill="#280b4b"
-      stroke-dasharray="4 2"
-      stroke-width="1"
-      stroke-opacity="0.5"
-      stroke="#ccaaff" />
-    <ethereum transform="translate(0 9) scale(0.2)" />
-  </g>
-  <g transform="translate(225 40) scale(0.75)">
-    <circle
-      r="20"
-      fill="#280b4b"
-      stroke-dasharray="4 2"
-      stroke-width="0.5"
-      stroke-opacity="0.5"
-      stroke="#aaffaa" />
-  </g>
-  <g transform="translate(-135 -60) scale(0.75)">
-    <circle
-      r="20"
-      fill="#280b4b"
-      stroke-dasharray="4 2"
-      stroke-width="0.5"
-      stroke-opacity="0.5"
-      stroke="#aaffaa" />
+  <g>
+    <g transform="translate(140 65) scale(0.75)">
+      <circle
+        r="35"
+        fill="#280b4b"
+        stroke-dasharray="4 2"
+        stroke-width="1"
+        stroke-opacity="0.5"
+        stroke="#ccaaff" />
+      <ethereum transform="translate(0 9) scale(0.2)" />
+    </g>
+    <g transform="translate(225 40) scale(0.75)">
+      <circle
+        r="20"
+        fill="#280b4b"
+        stroke-dasharray="4 2"
+        stroke-width="0.5"
+        stroke-opacity="0.5"
+        stroke="#aaffaa" />
+    </g>
+    <g transform="translate(-135 -60) scale(0.75)">
+      <circle
+        r="20"
+        fill="#280b4b"
+        stroke-dasharray="4 2"
+        stroke-width="0.5"
+        stroke-opacity="0.5"
+        stroke="#aaffaa" />
+    </g>
+    <line x1="140" y1="45" x2="120" y2="-35" stroke="#88ff88" stroke-dasharray="2 2" stroke-width="0.25" />
+    <line x1="220" y1="35" x2="120" y2="-35" stroke="#88ff88" stroke-dasharray="2 2" stroke-width="0.25" />
+    <line x1="-120" y1="35" x2="-130" y2="-55" stroke="#88ff88" stroke-dasharray="2 2" stroke-width="0.25" />
+    <line x1="140" y1="45" x2="-130" y2="-55" stroke="#88ff88" stroke-dasharray="2 2" stroke-width="0.1" />
+    <line x1="140" y1="45" x2="220" y2="35" stroke="#88ff88" stroke-dasharray="2 2" stroke-width="0.1" />
+
+
+    <animate
+      ref="fadeinnet"
+      attributeType="CSS"
+      attributeName="opacity"
+      dur="4s"
+      values="0; 0; 1"
+      keyTimes="0; 0.5; 1"
+      repeatCount="1"
+      restart="always"
+      calcMode="linear"
+      fill="freeze"
+    />
   </g>
 
   <line x1="-120" y1="35" x2="120" y2="-35" stroke="#88ff88" stroke-dasharray="2 2" />
-
-  <line x1="140" y1="45" x2="120" y2="-35" stroke="#88ff88" stroke-dasharray="2 2" stroke-width="0.25" />
-  <line x1="220" y1="35" x2="120" y2="-35" stroke="#88ff88" stroke-dasharray="2 2" stroke-width="0.25" />
-  <line x1="-120" y1="35" x2="-130" y2="-55" stroke="#88ff88" stroke-dasharray="2 2" stroke-width="0.25" />
-  <line x1="140" y1="45" x2="-130" y2="-55" stroke="#88ff88" stroke-dasharray="2 2" stroke-width="0.1" />
-  <line x1="140" y1="45" x2="220" y2="35" stroke="#88ff88" stroke-dasharray="2 2" stroke-width="0.1" />
 
   <g transform="translate(30 -8.75) scale(1.5) rotate(76)">
     <ship :showEngines="true" />
