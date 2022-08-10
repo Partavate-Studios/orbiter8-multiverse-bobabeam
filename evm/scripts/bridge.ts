@@ -60,11 +60,11 @@ class Config {
   // From https://github.com/bobanetwork/boba/blob/develop/packages/boba/register/addresses/addressesBobaBase_0xF8d0bF3a1411AC973A606f90B2d1ee0840e5979B.json
   // TODO: Boba has an AddressManager contract, but without an ABI, we can't use it...
   public ADDRESS_MANAGER_ADDRESS = '0x93A96D6A5beb1F661cf052722A1424CDDA3e9418'
-  public L1NFTBridgeAddress = '0xf5aCb091936715eCAC49d5759b4801703a175387'
-  public L2NFTBridgeAddress = '0x64371C6b9acFDBC14A98CD794a531Ff737Ef0F98'
+  public L1NFTBridgeAddress = '0x1E12Ba552Ac35351563091737910d9E5d1DaD17a' // Proxy__L1NFTBridge
+  public L2NFTBridgeAddress = '0x8E65834B52c3aCc79206a0F09c4b627BC588f09e' // Proxy__L2NFTBridge
 
-  public BOBABillingContractAddress = '0x05C9f36D901594D220311B211fA26DbD58B87717'
-  public L2BOBATokenAddress = '0x4200000000000000000000000000000000000006'
+  public BOBABillingContractAddress = '0x05C9f36D901594D220311B211fA26DbD58B87717' // Proxy__BobaBillingContract
+  public L2BOBATokenAddress = '0x4200000000000000000000000000000000000023' // L2_GLMR (DEV on Moonbase L1)
 }
 
 
