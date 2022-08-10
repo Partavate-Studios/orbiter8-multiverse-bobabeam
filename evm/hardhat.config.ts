@@ -4,6 +4,10 @@ import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 import dotenv from "dotenv";
 
+import("./tasks/verify-published")
+import("./tasks/mint")
+import("./tasks/register-foreign")
+
 dotenv.config();
 
 const config: HardhatUserConfig = {
@@ -33,7 +37,7 @@ const config: HardhatUserConfig = {
       accounts:
         process.env.BOBABASE_PRIVATE_KEY !== undefined ? [process.env.BOBABASE_PRIVATE_KEY] : [],
     },
-    moonbaseAlpha: {
+    moonbase: {
       chainId: 1287,
       url: process.env.MOONBASEALPHA_RPC_URI,
       accounts:
@@ -50,9 +54,10 @@ const config: HardhatUserConfig = {
   },
   etherscan: {
     apiKey: {
-      rinkeby: process.env.ETHERSCAN_API_KEY !== undefined ? process.env.ETHERSCAN_API_KEY : "",
-      // Unable to locate where to obtain API Keys
-      // moonbaseAlpha: process.env.MOONBASEALPHA_API_KEY,
+      rinkeby: process.env.ETHERSCAN_API_KEY ?? "",
+      moonbase: process.env.MOONBEAM_API_KEY ?? "",
+      // Uses Blockscout, not etherscan. No accounts, but takes any string!
+      bobabase: process.env.BOBASCAN_API_KEY ?? "",
     },
     customChains: [
       {
@@ -62,7 +67,15 @@ const config: HardhatUserConfig = {
           apiURL: "https://blockexplorer.bobabase.boba.network/api",
           browserURL: "https://blockexplorer.bobabase.boba.network"
         }
-      }
+      },
+      {
+        network: "moonbase",
+        chainId: 1287,
+        urls: {
+          apiURL: "https://api-moonbase.moonscan.io/api",
+          browserURL: "https://moonbase.moonscan.io/"
+        }
+      },
     ]
   }
 };

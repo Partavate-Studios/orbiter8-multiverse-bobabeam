@@ -7,5 +7,14 @@ typechain-types
 
 #Hardhat files
 cache
-artifacts
 
+# Gitignore won't allow exceptions if the parent folder is ignored
+# https://stackoverflow.com/a/16318111/513739
+artifacts/*
+!artifacts/contracts
+artifacts/contracts/*
+!artifacts/contracts/vendor
+artifacts/contracts/vendor/*
+!artifacts/contracts/vendor/boba
+!artifacts/contracts/vendor/boba/**/*.json
+artifacts/contracts/vendor/boba/**/*.dbg.json

@@ -12,7 +12,7 @@ import "./vendor/boba/IL1StandardERC721.sol";
 import "./MultiverseShip.sol";
 
 // Moonbase Alpha L1 Contract for O8 MultiverseShip
-// Note, this conforms to IL2StandardERC721, though we're inheriting it, due to event defs present in MultiverseShip
+// Note: this conforms to IL2StandardERC721, but not explicitly inheriting it, due to redeclarations of events in MultiverseShip (which is not IL1StandardERC721)
 contract MultiverseShip_L1 is MultiverseShip {
 
     // For Boba's IL2StandardERC721 compatibility (ideally this would be a mapping value at [chainId])
@@ -29,7 +29,7 @@ contract MultiverseShip_L1 is MultiverseShip {
 
     // Sets the address returned by IL1StandardERC721.l2Contract()
     // This provides compliance with IL1StandardERC721 and the bridge's supportsInterface()
-    function setL1Contract(address _l2Contract) public onlyOwner {
+    function setL2Contract(address _l2Contract) public onlyOwner {
         l2Contract = _l2Contract;
     }
 }
