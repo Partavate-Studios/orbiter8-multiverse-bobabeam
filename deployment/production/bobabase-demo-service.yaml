@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bobabase-demo-client
+  namespace: partavate-websites
+  labels:
+    app: bobabase-demo-client
+spec:
+  type: ClusterIP
+  selector:
+    app: bobabase-demo-client
+  ports:
+    - port: 80

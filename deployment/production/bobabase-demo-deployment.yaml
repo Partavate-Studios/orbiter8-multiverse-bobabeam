@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bobabase-demo-client
+  namespace: partavate-websites
+  labels:
+    app: bobabase-demo-client
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bobabase-demo-client
+  template:
+    metadata:
+      labels:
+        app: bobabase-demo-client
+    spec:
+      imagePullSecrets:
+        - name: partavate-gitlab-registry
+      containers:
+        - name: bobabase-demo-client
+          image: registry.gitlab.com/partavate/bobabase-demo/client:0.1
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /nginx-health
+              port: 80
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 3
+          resources:
+           limits:
+              memory: '64Mi'
+              cpu: '100m'
+          ports:
+            - containerPort: 80
+          # Environmental variables, overrides .env
+          env: []
