@@ -140,7 +140,7 @@ _Ensure your .env file is setup correctly!_
 
 [Live Demo](https://demos.partavate.com/o8-multiverse-bobabeam)
 
-[Orbiter 8 Info](https://partavate.com/)
+[Orbiter 8 Info](https://orbiter8.com/)
 
 [Partavate Info](https://partavate.com)
 
