@@ -1,27 +1,27 @@
 # Orbiter 8 Multiverse Demo
 
-[This demo](https://demos.partavate.com/o8-multiverse-bobabeam) is a proof of concept for
-[Orbiter 8](https://orbiter8.com)'s multiverse mechanics and was created by
+![Orbiter 8 Portal Demo](/orbiter8-portal-demo.png)
+
+[This demo](https://demos.partavate.com/o8-multiverse-bobabeam) is a *proof of concept* for
+[Orbiter 8](https://orbiter8.com)'s *multiverse mechanics* and was created by
 [Partavate Studios](https://partavate.com) as a submission for the
 [Bobabeam hackathon](https://bobaxmoonbeam.notion.site/bobaxmoonbeam/BOBA-x-MOONBEAM-HACK-CHALLENGE-264b16c0ea2b4878b7c03a708df7653d). Special thanks to [Boba Network](https://boba.network/) and
 [Moonbeam Network](https://moonbeam.network/) for the opportunity.
 
-![Orbiter 8 Portal Demo](/orbiter8-portal-demo.png)
+## What is Orbiter 8?
 
-
-
-## Orbiter 8?
-
-[Orbiter 8](https://orbiter8.com) is a space trading MMO designed to run entirely on a distributed ledger network. Being fully decentralized in this way, the game is client agnostic allowing anyone to build a new client that will interface with the same game. Game assets have token interfaces allowing ships and planets to be traded as ERC721 NFTs and the in-game galactic credits to be traded as ERC20 tokens. The game world, a directed network of stars, is near-infinite and dynamically generated as players explore the frontier. The game is designed for the Ethereum Virtual Machine and can be deployed to most EVM compatible networks.
+[Orbiter 8](https://orbiter8.com) is a space trading MMO designed to run entirely on a distributed ledger network. Being fully decentralized in this way, the game is client agnostic so anyone can build a different client interface that will work with the same game. Game assets have token interfaces so ships and planets can be traded as ERC721 NFTs. The in-game currency, galactic credits, can also be traded as ERC20 tokens. The game world, a directed network of stars, is near-infinite and dynamically generated as players explore the frontier. The game is designed for the Ethereum Virtual Machine and can be deployed to most EVM compatible networks.
 
 ## Multiverse Mechanics?
 
-Orbiter 8 is a multi-chain application, with unique instances of the game universe running on multiple distributed ledger networks. Gamers will be able to fly their ships through portals to another universe - or, in other words, bridge their ship NFT to another network. Each network contains a universe and bridged together, a multiverse.
+Orbiter 8 is a multi-chain application. This means that distinct instances of the game universe run on each distributed ledger network. Each distinct game instance represents a unique galaxy for gamers to engage and explore. With portals, gamers will be able to fly their ship to another universe - which will move their ship NFT to another network through a bridge. With unique networks connected through portals, a multiverse emerges.
 
-## What's it do?
+## What's the demo do?
 
-This demo contains two key sections. The first is a basic story animation to establish the context of the game world. The second section demostrates the
-transfer of a ship NFT between the Moonbase and Bobabase networks initiated by flying an Orbiter 8 ship into a portal.
+This demo contains two key sections.
+
+1. The first is a basic story animation to establish the context of the game world. It contains 6 story tellings lides.
+2. The second section provides an interface to teleport a ship NFT between the Moonbase and Bobabase networks.
 
 ## Deployment and Initialization
 
