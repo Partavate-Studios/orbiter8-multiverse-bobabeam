@@ -1,12 +1,14 @@
 # Orbiter 8 Multiverse Demo
 
-[This demo](https://demos.partavate.com/o8-multiverse-bobabeam) is a proof of concept for [Orbiter 8](https://orbiter8.com)'s multiverse mechanics.
+[This demo](https://demos.partavate.com/o8-multiverse-bobabeam) is a proof of concept for
+[Orbiter 8](https://orbiter8.com)'s multiverse mechanics and was created by
+[Partavate Studios](https://partavate.com) as a submission for the
+[Bobabeam hackathon](https://bobaxmoonbeam.notion.site/bobaxmoonbeam/BOBA-x-MOONBEAM-HACK-CHALLENGE-264b16c0ea2b4878b7c03a708df7653d). Special thanks to [Boba Network](https://boba.network/) and
+[Moonbeam Network](https://moonbeam.network/) for the opportunity.
 
 ![Orbiter 8 Portal Demo](/orbiter8-portal-demo.png)
 
-Created by [Partavate Studios](https://partavate.com) as a submission for the
-[Bobabeam hackathon](https://bobaxmoonbeam.notion.site/bobaxmoonbeam/BOBA-x-MOONBEAM-HACK-CHALLENGE-264b16c0ea2b4878b7c03a708df7653d).
-Special thanks to [Boba Network](https://boba.network/) and [Moonbeam Network](https://moonbeam.network/) for the opportunity to buidl a fun thing.
+
 
 ## Orbiter 8?
 
