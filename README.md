@@ -2,18 +2,19 @@
 
 [This demo](https://demos.partavate.com/o8-multiverse-bobabeam) is a proof of concept for [Orbiter 8](https://orbiter8.com)'s multiverse mechanics.
 
-[Partavate Studios](https://partavate.com) created this demo
-as a submission for the
+![Orbiter 8 Portal Demo](/orbiter8-portal-demo.png)
+
+Created by [Partavate Studios](https://partavate.com) as a submission for the
 [Bobabeam hackathon](https://bobaxmoonbeam.notion.site/bobaxmoonbeam/BOBA-x-MOONBEAM-HACK-CHALLENGE-264b16c0ea2b4878b7c03a708df7653d).
-Special thanks to [Boba Network](https://boba.network/) and [Moonbeam Network](https://moonbeam.network/) for the opportunity to buidl fun things.
+Special thanks to [Boba Network](https://boba.network/) and [Moonbeam Network](https://moonbeam.network/) for the opportunity to buidl a fun thing.
 
 ## Orbiter 8?
 
-Orbiter 8 is a space trading MMO designed to run entirely on a distributed ledger network. Being fully decentralized in this way, the game is client agnostic allowing anyone to build a new client that will interface with the same game. Game assets have token interfaces allowing ships and planets to be traded as ERC721 NFTs and the in-game galactic credits to be traded as ERC20 tokens. The game world, a directed network of stars, is near-infinite and dynamically generated as players explore the frontier. The game is designed for the Ethereum Virtual Machine and can be deployed to most EVM compatible networks.
+[Orbiter 8](https://orbiter8.com) is a space trading MMO designed to run entirely on a distributed ledger network. Being fully decentralized in this way, the game is client agnostic allowing anyone to build a new client that will interface with the same game. Game assets have token interfaces allowing ships and planets to be traded as ERC721 NFTs and the in-game galactic credits to be traded as ERC20 tokens. The game world, a directed network of stars, is near-infinite and dynamically generated as players explore the frontier. The game is designed for the Ethereum Virtual Machine and can be deployed to most EVM compatible networks.
 
 ## Multiverse Mechanics?
 
-Orbiter 8 is a multi-chain application, with unique instances of the game universe running on multiple distributed ledger networks. This is the multiverse - and the multiverse is connected. Gamers will be able to fly their ships through portals to another universe - or, in other words, bridge their ship NFT to another network.
+Orbiter 8 is a multi-chain application, with unique instances of the game universe running on multiple distributed ledger networks. Gamers will be able to fly their ships through portals to another universe - or, in other words, bridge their ship NFT to another network. Each network contains a universe and bridged together, a multiverse.
 
 ## What's it do?
 
@@ -30,16 +31,16 @@ _Ensure your .env file is setup correctly!_
     npx hardhat run scripts/deploy-L1.ts --network moonbase
     #  L1 MultiverseShip deployed to: 0xB8f9Ef0223713777B6cd722DD299febEEB71012D
     ```
-    
+
     ```
     npx hardhat run scripts/deploy-L2.ts --network bobabase
     #  L2 MultiverseShip deployed to: 0x58e60385A8883B3AA1539a0b969eC2EAd537589E
     ```
 
     Note that deployment to public chains will save the address in `evm/addresses/published-addresses.json`.
-    
+
     Mint, Verify, and Bridge tasks/scripts will read the contract addresses from this file.
-    
+
 2. Publish and Verify the contract source code with the networks' block explorers.
 
     ```
@@ -49,13 +50,13 @@ _Ensure your .env file is setup correctly!_
 
     #  Successfully verified contract MultiverseShip_L1 on Etherscan.
     #  https://moonbase.moonscan.io/address/0xB8f9Ef0223713777B6cd722DD299febEEB71012D#code
-    
+
     npx hardhat verify-published --network bobabase
     #  Attempting to verify contract 0x58e60385A8883B3AA1539a0b969eC2EAd537589E on 1297
-    #  
+    #
     #  Successfully verified contract MultiverseShip_L2 on Etherscan.
     #  https://blockexplorer.bobabase.boba.network/address/0x58e60385A8883B3AA1539a0b969eC2EAd537589E#code
-    ``` 
+    ```
 
 3. Set the foreign contract address in the deployed contracts. This informs the bridge on how to transfer it across networks.
 
@@ -72,7 +73,7 @@ _Ensure your .env file is setup correctly!_
     ```
 
 4. Mint Ship NFT tokens for use in testing bridging
- 
+
     Normally the Orbiter 8 game contract (ShipLibrary.sol) should be the only actor minting Ships.
 
     However for testing, and only with non-production ship contracts, tokens may be manually minted using the `mint` task.
@@ -87,7 +88,7 @@ _Ensure your .env file is setup correctly!_
 
 
 5. Register the contract with the Boba NFT Bridge
-    
+
     The contract addresses must be registered in the Bobabase NFT bridge registry.
 
     **(This must be done by the Boba team currently.)**
@@ -111,7 +112,7 @@ _Ensure your .env file is setup correctly!_
     As of 2022.08.09, this reverts, due to lack of registration in the L1NFTBridge (as expected).
 
     Full output: https://gist.github.com/excalq/1bda1420c6c6ce43b19fa1d3a4b260d0
-    
+
 
 3. Bobabase to Moonbase (L2 to L1 with an L2 Native NFT)
 
@@ -124,13 +125,13 @@ _Ensure your .env file is setup correctly!_
     As of 2022.08.09, this reverts, due to an unexpected error, `L2_BOBA: approve is disabled pending further community discussion.`
 
     Full output: https://gist.github.com/excalq/20c444fb8b60ecb237c00d33430e9162
-    
+
 
 ## Links
 
 [Live Demo](https://demos.partavate.com/o8-multiverse-bobabeam)
 
-[Orbiter 8 Info](https://demos.partavate.com/o8-multiverse-bobabeam)
+[Orbiter 8 Info](https://partavate.com/)
 
 [Partavate Info](https://partavate.com)
 
