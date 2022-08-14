@@ -2,25 +2,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bobabase-demo-client
+  name: orbiter8-multiverse-bobabeam
   namespace: partavate-websites
   labels:
-    app: bobabase-demo-client
+    app: orbiter8-multiverse-bobabeam
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: bobabase-demo-client
+      app: orbiter8-multiverse-bobabeam
   template:
     metadata:
       labels:
-        app: bobabase-demo-client
+        app: orbiter8-multiverse-bobabeam
     spec:
       imagePullSecrets:
         - name: partavate-gitlab-registry
       containers:
-        - name: bobabase-demo-client
-          image: registry.gitlab.com/partavate/bobabase-demo/client:0.1
+        - name: orbiter8-multiverse-bobabeam
+          image: registry.gitlab.com/partavate/orbiter8-multiverse-bobabeam/client:0.1
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3

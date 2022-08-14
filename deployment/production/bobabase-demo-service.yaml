@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: bobabase-demo-client
+  name: orbiter8-multiverse-bobabeam
   namespace: partavate-websites
   labels:
-    app: bobabase-demo-client
+    app: orbiter8-multiverse-bobabeam
 spec:
   type: ClusterIP
   selector:
-    app: bobabase-demo-client
+    app: orbiter8-multiverse-bobabeam
   ports:
     - port: 80

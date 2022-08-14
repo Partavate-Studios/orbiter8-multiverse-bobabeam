@@ -1,8 +1,31 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: add-trailing-slash
+  namespace: partavate-websites
+spec:
+  # Ensure presence of trailing slash. Traefik blows.
+  redirectRegex:
+    regex: "^(.*)\\/o8-multiverse-bobabeam$"
+    replacement: "/o8-multiverse-bobabeam/"
+    permanent: true
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: stripprefix-bobabeam
+  namespace: partavate-websites
+spec:
+  stripPrefix:
+    prefixes:
+      - /o8-multiverse-bobabeam
+
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: poldice-ingress
+  name: orbiter8-multiverse-bobabeam-ingress
   namespace: partavate-websites
 spec:
   entryPoints:
@@ -10,10 +33,13 @@ spec:
     - websecure
   routes:
     # Partavate.com
-    - match: Host(`polydice.app`) || Host(`dice.partavate.com`)
+    - match: Host(`demos.partavate.com`) && PathPrefix(`/o8-multiverse-bobabeam`)
       kind: Rule
       services:
-        - name: polydice-client
+        - name: orbiter8-multiverse-bobabeam
           port: 80
+      middlewares:
+        - name: add-trailing-slash
+        - name: stripprefix-bobabeam
   tls:
     certResolver: letsencrypt

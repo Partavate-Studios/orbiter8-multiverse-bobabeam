@@ -6,7 +6,7 @@
 # Latest Node.js LTS version as of 2022.03.22: 16.14.2
 FROM node:17.9-alpine AS node_npm
 WORKDIR /var/www/client
-COPY --from=composer /var/www/ /var/www/
+COPY ./client /var/www/client
 
 # The JS Client requires ABI and address JSON artifacts for the EVM Contracts
 # TODO: After EVM integration to client, once whitelisted with Boba
@@ -17,8 +17,7 @@ COPY ./evm/addresses/published-addresses.json /var/www/evm/addresses/published-a
 
 # Vite Build
 RUN npm config set depth 0 && \
-    npm install --silent --no-progress && \
-    (vue-tsc --noEmit && vite build) && \
+    npx vite build --outDir /var/www/client/public && \
     rm -rf node_modules
 
 # Build Stage 3: Final image, without unneeded components
