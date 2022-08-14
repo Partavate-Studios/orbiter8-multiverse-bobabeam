@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orbiter8-multiverse-bobabeam
+  namespace: partavate-websites
+  labels:
+    app: orbiter8-multiverse-bobabeam
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: orbiter8-multiverse-bobabeam
+  template:
+    metadata:
+      labels:
+        app: orbiter8-multiverse-bobabeam
+    spec:
+      imagePullSecrets:
+        - name: partavate-gitlab-registry
+      containers:
+        - name: orbiter8-multiverse-bobabeam
+          image: registry.gitlab.com/partavate/orbiter8-multiverse-bobabeam/client:0.1
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /nginx-health
+              port: 80
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 3
+          resources:
+           limits:
+              memory: '64Mi'
+              cpu: '100m'
+          ports:
+            - containerPort: 80
+          # Environmental variables, overrides .env
+          env: []

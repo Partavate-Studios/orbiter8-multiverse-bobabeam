@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: orbiter8-multiverse-bobabeam
+  namespace: partavate-websites
+  labels:
+    app: orbiter8-multiverse-bobabeam
+spec:
+  type: ClusterIP
+  selector:
+    app: orbiter8-multiverse-bobabeam
+  ports:
+    - port: 80
