@@ -30,11 +30,6 @@ export default {
 </script>
 
 <template>
-  <g :transform="'translate(0 ' + (ui.bottom - 80) + ')'">
-    <g transform="scale(0.25)">
-    <logo />
-    </g>
-  </g>
   <text font-size="2em" :transform="'translate(0 ' + (ui.top + 150) + ')'">Please connect your wallet.</text>
 
   <btn font-size="30" :height="80" transform="translate(0 -20)" @click="connectWallet" text="Connect Wallet" />
