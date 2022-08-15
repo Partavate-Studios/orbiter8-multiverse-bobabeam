@@ -45,13 +45,11 @@ export default {
   },
   methods: {
     expandTo() {
-      console.log('starting', this.expansion)
       if (Math.abs(this.expandState - this.expansion) > 0.05) {
         this.expandState = ((this.expandState * 9 + this.expansion) / 10)
         setTimeout(() => { this.expandTo() }, 50)
       } else if(this.expandState != this.expansion) {
         this.expandState = this.expansion
-        console.log('done')
       }
     }
   },

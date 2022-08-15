@@ -3,8 +3,7 @@ import Splash from './components/01.Splash.vue'
 import About from './components/02.AboutOrbiter8.vue'
 import NetworkSelect from './components/03.NetworkSelect.vue'
 
-import Configuration from './components/Configuration.vue'
-import Settings from './components/Settings.vue'
+import Play from './components/04.Play.vue'
 
 import { useRouting } from './stores/routing'
 const routing = useRouting()
@@ -12,11 +11,9 @@ const routing = useRouting()
 
 <template>
   <Splash v-if="routing.isScreen('splash')"/>
-  <NetworkSelect v-if="routing.isScreen('network')"/>
   <About v-if="routing.isScreen('about')" />
-
-  <Settings v-if="routing.isScreen('settings')"/>
-  <Configuration v-if="routing.isScreen('configuration')"/>
+  <NetworkSelect v-if="routing.isScreen('network')"/>
+  <Play v-if="routing.isScreen('play')"/>
 </template>
 
 <style lang="scss">
