@@ -11,10 +11,19 @@
 
 ## About This Demo
 
+This demo is a standalone feature demo representing work planned for the Orbiter8.
+
 
 ### What is Orbiter 8?
 
-[Orbiter 8](https://orbiter8.com) is a space trading MMO designed to run entirely on a distributed ledger network. Being fully decentralized in this way, the game is client agnostic so anyone can build a different client interface that will work with the same game. Game assets have token interfaces so ships and planets can be traded as ERC721 NFTs. The in-game currency, galactic credits, can also be traded as ERC20 tokens. The game world, a directed network of stars, is near-infinite and dynamically generated as players explore the frontier. The game is designed for the Ethereum Virtual Machine and can be deployed to most EVM compatible networks.
+[Orbiter 8](https://orbiter8.com/) is a space trading MMO designed to run entirely on a distributed ledger network. Being fully decentralized in this way, the game is client agnostic so anyone can build a different client interface that will work with the same game. Game assets have token interfaces so ships and planets can be traded as ERC721 NFTs. The in-game currency, galactic credits, can also be traded as ERC20 tokens. The game world, a directed network of stars, is near-infinite and dynamically generated as players explore the frontier. The game is designed for the Ethereum Virtual Machine and can be deployed to most EVM compatible networks.
+
+
+### Where can I play Orbiter 8?
+
+You can [go play Orbiter 8 Demo 3 right now](https://orbiter8.com/play). This demo is the 3rd of 4 planned demo on the path to minimum viable game and is available on a variety of networks including Moonriver, Moonbase, and Bobabase. Note that **Demo 3 is unrealted from this project**, the portals demo.
+
+[![Play Orbiter 8 Demo 3](./play-orbiter8-demo3-now.png)](https://orbiter8.com/play)
 
 
 ### What do you mean, "Multiverse Mechanic?"
