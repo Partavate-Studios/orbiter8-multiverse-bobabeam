@@ -31,18 +31,18 @@ export default {
         ],
         [
           'Still bound to our sun,',
-          'we continued to long',
-          'to explore the stars.',
+          'we\'ve continued our longing',
+          'for the stars.',
         ],
         [
-          'With Orbiter 8,',
-          'the first starships',
+          'That was until today!',
+          'The first starships',
           'have arrived.',
         ],
         [
           'Orbiter 8 is an MMO',
-          'strategy game built ',
-          'for the EVM.',
+          'galaxy-exploring strategy',
+          'game for the EVM.',
         ],
         [
           'Introducing Portals!',

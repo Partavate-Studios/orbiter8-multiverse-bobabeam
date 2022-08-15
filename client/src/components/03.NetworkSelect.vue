@@ -51,14 +51,13 @@ export default {
 <svgContainer>
   <web3Containment>
 
-    <g :transform="'translate(0 ' + (ui.top + 80) + ')'">
-      <g transform="scale(0.5)">
+    <g :transform="'translate(0 ' + (ui.top + 50) + ')'">
+      <g transform="scale(0.2)">
       <logo />
       </g>
-      <line :x1="ui.left + 50" :x2="ui.right-50" y1="60" y2="60" stroke="#ffffff44" stroke-width="4" />
     </g>
-    <text font-size="2em" :transform="'translate(0 ' + (ui.top + 200) + ')'">Choose a Network</text>
-    <g transform="scale(1.4)">
+    <text font-size="1em" :transform="'translate(0 ' + (ui.top + 100) + ')'">Choose a Network</text>
+    <g transform="scale(1)">
       <g :transform="'translate(-100 ' + (networkCount * -15 ) + ')'">
         <g v-for="(network, key, index) in deployments" :transform="'translate(0 ' + index * 30 + ')'" @mouseenter="this.hoverId = key" @mouseleave="this.hoverId = null">
           <btn :val="key" :width="120" :height="28" @click="switchNetwork" font-size="0.9em" :text="networks[key].shortName" :selected="wallet.chainId == key" />
