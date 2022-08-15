@@ -27,7 +27,7 @@ export default {
 <template>
   <svgContainer>
   <g>
-    <backdrop  transform="scale(0.5)" />
+    <backdrop  transform="scale(2)" />
   </g>
 
     <logo  :transform="'translate(0 ' + (ui.top + 80) + ') scale(0.4)'" />

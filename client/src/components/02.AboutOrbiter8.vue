@@ -54,22 +54,37 @@ export default {
           'connecting distinct universes',
           'into a multiverse.',
         ],
-      ]
+      ],
+      scale: [
+        2.5,
+        2.25,
+        3,
+        2,
+        1.75,
+        1.5
+      ],
+      lastScale: 2
     }
   },
   methods: {
     next() {
+      this.lastScale = this.scale[this.panel]
       this.panel = (this.panel + 1) % this.panelCount
+      this.$refs.adjustbackdrop.beginElement()
     },
     prev() {
+      this.lastScale = this.scale[this.panel]
       if (this.panel > 0) {
         this.panel --
       }
+      this.$refs.adjustbackdrop.beginElement()
     },
     switchTo(n:number) {
+      this.lastScale = this.scale[this.panel]
       if ((n >= 0) && (n < this.panelCount)) {
         this.panel = n
       }
+      this.$refs.adjustbackdrop.beginElement()
     },
     finish() {
       this.routing.switchScreen('network')
@@ -81,7 +96,23 @@ export default {
 <template>
   <svgContainer>
 
-    <backdrop transform="scale(2)" />
+    <g>
+      <backdrop  />
+
+      <animateTransform
+        ref="adjustbackdrop"
+        attributeName="transform"
+        attributeType="XML"
+        type="scale"
+        dur="2s"
+        :from="lastScale"
+        :to="scale[panel]"
+        calcMode="linear"
+        restart="always"
+        fill="freeze"
+        repeatCount="1"
+      />
+    </g>
 
     <panel01 v-if="panel == 0" v-on:next="next" />
     <panel02 v-if="panel == 1" v-on:pre="prev()" v-on:next="next" />
