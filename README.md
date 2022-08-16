@@ -13,6 +13,7 @@
 
 This demo is a standalone feature demo representing work planned for the Orbiter8.
 
+[View Live Demo](https://demos.partavate.com/o8-multiverse-bobabeam)
 
 ### What is Orbiter 8?
 
